@@ -3,7 +3,7 @@ import config from '../config/config.js';
 
 export const authMiddleware = (req, res, next) => {
     const token = req.cookies.token || req.headers['authorization'];
-
+    console.log(token)
     if (!token) {
         return res.status(401).json({ message: "Acceso denegado. No hay token." });
     }
