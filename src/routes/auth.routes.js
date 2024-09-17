@@ -4,7 +4,7 @@ import { login, logout, register } from "../controllers/auth.controllers.js";
 const route=Route()
 
 route.post('/register',register)
-route.get('/login',login)
-route.get('/logout',logout)
+route.post('/login',login)
+route.post('/logout',logout)
 
 export default route
