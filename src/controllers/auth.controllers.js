@@ -8,13 +8,13 @@ export const register = async (req, res) => {
 
         const { name, email, password, vPassword } = req.body
 
-        if (!name || !email || !password || !vPassword) {
-            return res.status(400).json({ message: 'Por favor, ingresa todos los datos' });
-        }
+        // if (!name || !email || !password || !vPassword) {
+        //     return res.status(400).json({ message: 'Por favor, ingresa todos los datos' });
+        // }
 
         const userExiste = await User.findOne({ email })
 
-        if (password !== vPassword) return console.log('Datos incorrectos')
+        //if (password !== vPassword) return console.log('Datos incorrectos')
         if (userExiste) return res.send('Email ya esta en uso..')
 
         const Hashpassword = await hashPassword(password)
@@ -61,7 +61,6 @@ export const login = async (req, res) => {
 
         // Enviar cookie con el token
         res.cookie('token', token, {
-            httpOnly: true, // Seguridad: no accesible desde JavaScript del cliente
             secure: process.env.NODE_ENV === 'production' // Solo en HTTPS en producción
         });
 
