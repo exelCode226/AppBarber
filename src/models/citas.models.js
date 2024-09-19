@@ -4,6 +4,7 @@ const citaSchema = new mongoose.Schema({
   cliente: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
   barbero: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
   fechaHora: { type: Date, required: true },
+  telefono: { type: String, required: true },
   tipoCorte: { type: String, required: true },
   duracion: { type: Number, required: true }, // En minutos
   precio: { type: Number, required: true, min: 0 },

@@ -27,6 +27,7 @@ class Validator {
       barbero: Joi.string().required(),
       fechaHora: Joi.date().iso().required(),
       tipoCorte: Joi.string().required(),
+      telefono:Joi.string().required(),
       duracion: Joi.number().min(10).required(),
       precio: Joi.number().required(),
       pagoAdelantado: Joi.boolean(),
