@@ -6,7 +6,7 @@ import bcrypt from "bcrypt";
 export const register = async (req, res) => {
     try {
 
-        const { name, email, password, vPassword } = req.body
+        const { name, email, password, role } = req.body
 
         // if (!name || !email || !password || !vPassword) {
         //     return res.status(400).json({ message: 'Por favor, ingresa todos los datos' });
@@ -25,6 +25,7 @@ export const register = async (req, res) => {
             name: name,
             email: email,
             password: Hashpassword,
+            role:role
 
 
         })
