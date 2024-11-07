@@ -3,20 +3,22 @@ import { hashPassword } from "../middlewares/hashPassword.js"
 import User from "../models/auth.models.js"
 import jwt from 'jsonwebtoken'
 import bcrypt from "bcrypt";
+import * as serviceAuth  from "../services/auth.services.js";
 export const register = async (req, res) => {
     try {
 
         const { name, email, password, role } = req.body
 
-        // if (!name || !email || !password || !vPassword) {
-        //     return res.status(400).json({ message: 'Por favor, ingresa todos los datos' });
-        // }
+        if(!name || !email || !password || !role){
+            return res.status(300).send("Ingresar todos los datos")
+        }
 
-        const userExiste = await User.findOne({ email })
+        const userExiste = await serviceAuth.serviceRegister(email)
 
-        //if (password !== vPassword) return console.log('Datos incorrectos')
-        if (userExiste) return res.send('Email ya esta en uso..')
-
+        if (userExiste) {
+            return res.status(409).json({ message: "El usuario ya existe" });
+        }
+        
         const Hashpassword = await hashPassword(password)
 
 
